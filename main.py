@@ -8,16 +8,14 @@ from kivy.config import Config
 import math
 
 Config.set('graphics', 'resizable', 0)
-
 Config.set('graphics', 'width', 321)
-
 Config.set('graphics', 'height', 531)
 
 class CalculatorApp(App):
 	def update_label(self):
 		self.lbl.text = self.formula		
 
-	def add_number(self, instance):
+	def number(self, instance):
 		if(self.formula == "0"):
 
 		   self.formula = ""
@@ -30,7 +28,7 @@ class CalculatorApp(App):
 		self.update_label()
 
 
-	def add_operation(self, instance):
+	def operation(self, instance):
 		if( str(instance.text).lower() == "x" ):
 			self.formula += "*"
 
@@ -59,7 +57,7 @@ class CalculatorApp(App):
 
 		self.update_label()
 
-	def calc_result(self, instance ):
+	def result(self, instance ):
 
 		try:
 			self.lbl.text = str(eval(self.lbl.text ))
@@ -90,38 +88,36 @@ class CalculatorApp(App):
 
 		bl.add_widget( self.lbl )
 
-		gl.add_widget( Button(text="y", on_press = self.add_operation,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
-		gl.add_widget( Button(text="(", on_press = self.add_number,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
-		gl.add_widget( Button(text=")", on_press = self.add_number,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
-		gl.add_widget( Button(text="÷", on_press = self.add_operation,background_color = [19/255,19/255,19/255 , 255/255],background_normal =""))
+		gl.add_widget( Button(text="y", on_press = self.operation,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
+		gl.add_widget( Button(text="(", on_press = self.number,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
+		gl.add_widget( Button(text=")", on_press = self.number,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
+		gl.add_widget( Button(text="÷", on_press = self.operation,background_color = [19/255,19/255,19/255 , 255/255],background_normal =""))
 
-		gl.add_widget( Button(text="7", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
-		gl.add_widget( Button(text="8", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
-		gl.add_widget( Button(text="9", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal =""))
-		gl.add_widget( Button(text="x", on_press = self.add_operation,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
-
-		#gl.add_widget( Button(text="f", on_press = self.add_operation) ) gl.add_widget( Button(text="xn", on_press = self.add_operation) )#√
+		gl.add_widget( Button(text="7", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
+		gl.add_widget( Button(text="8", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
+		gl.add_widget( Button(text="9", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal =""))
+		gl.add_widget( Button(text="x", on_press = self.operation,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
 		
-		gl.add_widget( Button(text="4", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
-		gl.add_widget( Button(text="5", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
-		gl.add_widget( Button(text="6", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
-		gl.add_widget( Button(text="-", on_press = self.add_number,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
+		gl.add_widget( Button(text="4", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
+		gl.add_widget( Button(text="5", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
+		gl.add_widget( Button(text="6", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
+		gl.add_widget( Button(text="-", on_press = self.number,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
 
-	     #gl.add_widget( Button(text="xn", on_press = self.add_operation) )#√
+		gl.add_widget( Button(text="1", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
+		gl.add_widget( Button(text="2", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 ,200/255],background_normal ="") )
+		gl.add_widget( Button(text="3", on_press = self.number ,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
+		gl.add_widget( Button(text="+", on_press = self.number ,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
 
-		gl.add_widget( Button(text="1", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
-		gl.add_widget( Button(text="2", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 ,200/255],background_normal ="") )
-		gl.add_widget( Button(text="3", on_press = self.add_number ,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
-		gl.add_widget( Button(text="+", on_press = self.add_number ,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
-
-		gl.add_widget( Button(text="C", on_press = self.add_operation,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
-		gl.add_widget( Button(text="0", on_press = self.add_number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
-		gl.add_widget( Button(text=".", on_press = self.add_number,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
-		gl.add_widget( Button(text="=", on_press = self.calc_result,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
+		gl.add_widget( Button(text="C", on_press = self.operation,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
+		gl.add_widget( Button(text="0", on_press = self.number,color= [0,0,0,1],background_color = [209/255,14/255,235/255 , 200/255],background_normal ="") )
+		gl.add_widget( Button(text=".", on_press = self.number,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
+		gl.add_widget( Button(text="=", on_press = self.result,background_color = [19/255,19/255,19/255 , 255/255],background_normal ="") )
         
 		bl.add_widget( gl )
 		return bl
 
 if __name__=="__main__":
 
-	CalculatorApp().run()
+	CalculatorApp().run() '''python -m pip install --upgrade pip setuptools virtualenv
+	                         python -m pip install kivy[base] kivy_examples'''
+
